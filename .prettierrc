@@ -1,5 +1,5 @@
 {
   "singleQuote": true,
   "trailingComma": "all",
-  "indent": 2
+  "tabWidth": 2
 }
