@@ -1,17 +1,17 @@
-import { IsString, IsNumber, IsArray, IsOptional } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString, IsArray } from 'class-validator';
 
 export class CreateCoffeeDto {
-  @IsNumber()
-  @IsOptional()
-  readonly id: number;
+	@ApiProperty({ description: 'The name of the coffee' })
+	@IsString()
+	readonly name: string;
 
-  @IsString()
-  readonly name: string;
+	@ApiProperty({ description: 'The brand of the coffee' })
+	@IsString()
+	readonly brand: string;
 
-  @IsString()
-  readonly brand: string;
-  
-  @IsArray()
-  @IsString({ each: true })
-  readonly flavors: string[];
+	@ApiProperty({ description: 'The flavors of the coffee' })
+	@IsArray()
+	@IsString({ each: true })
+	readonly flavors: string[];
 }
