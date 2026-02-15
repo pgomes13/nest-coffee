@@ -7,6 +7,9 @@ import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { CommonModule } from './common/common.module';
 import { UsersModule } from './users/users.module';
+import { AuthenticationController } from './iam/authentication/authentication.controller';
+import { AuthenticationService } from './iam/authentication/authentication.service';
+import { IamModule } from './iam/iam.module';
 import appConfig from './config/app.config';
 
 @Module({
@@ -30,8 +33,9 @@ import appConfig from './config/app.config';
     DatabaseModule,
     CommonModule,
     UsersModule,
+    IamModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, AuthenticationController],
+  providers: [AppService, AuthenticationService],
 })
 export class AppModule {}
