@@ -1,21 +1,21 @@
 import {
+	Body,
 	Controller,
+	Delete,
 	Get,
 	Param,
-	Post,
-	Body,
 	Patch,
-	Delete,
+	Post,
 	Query,
 } from '@nestjs/common';
+import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
+import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
+import { ActiveUser } from 'src/iam/decorators/active-user.decorator';
+import type { ActiveUserData } from '../iam/interfaces/active-user-data.interface';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
-import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
-import { Public } from 'src/common/decorators/public.decorator';
-import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
-import { Protocol } from 'src/common/decorators/protocol.decorator';
-import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('coffees')
 @Controller('coffees')
@@ -25,7 +25,7 @@ export class CoffeesController {
 	@ApiForbiddenResponse({ description: 'Forbidden.' })
 	@Get()
 	async findAll(
-		@Protocol('https') protocol: string,
+		@ActiveUser() user: ActiveUserData,
 		@Query() paginationQuery: PaginationQueryDto,
 	) {
 		return this.coffeesService.findAll(paginationQuery);

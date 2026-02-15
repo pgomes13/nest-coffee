@@ -5,14 +5,15 @@ import {
 	UnauthorizedException,
 } from '@nestjs/common';
 import type { ConfigType } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
-import { SignUpDto } from './dto/sign-up.dto';
-import { HashingService } from '../hashing/hashing.service';
-import { SignInDto } from './dto/sign-in.dto';
-import { JwtService } from '@nestjs/jwt';
 import jwtConfig from '../config/jwt.config';
+import { HashingService } from '../hashing/hashing.service';
+import { ActiveUserData } from '../interfaces/active-user-data.interface';
+import { SignInDto } from './dto/sign-in.dto';
+import { SignUpDto } from './dto/sign-up.dto';
 
 @Injectable()
 export class AuthenticationService {
@@ -59,7 +60,7 @@ export class AuthenticationService {
 			{
 				sub: user.id,
 				email: user.email,
-			},
+			} as ActiveUserData,
 			{
 				audience: this.jwtConfiguration.audience,
 				issuer: this.jwtConfiguration.issuer,
