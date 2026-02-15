@@ -23,7 +23,6 @@ export class CoffeesController {
 	constructor(private readonly coffeesService: CoffeesService) {}
 
 	@ApiForbiddenResponse({ description: 'Forbidden.' })
-	@Public()
 	@Get()
 	async findAll(
 		@Protocol('https') protocol: string,
