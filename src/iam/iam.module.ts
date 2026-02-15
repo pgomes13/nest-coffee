@@ -1,16 +1,17 @@
 import { Module } from '@nestjs/common';
-import { HashingService } from './hashing/hashing.service';
-import { BcryptService } from './hashing/bcrypt.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from '../users/entities/user.entity';
-import { AuthenticationService } from './authentication/authentication.service';
-import { AuthenticationController } from './authentication/authentication.controller';
-import { JwtModule } from '@nestjs/jwt';
-import jwtConfig from './config/jwt.config';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
+import { JwtModule } from '@nestjs/jwt';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from '../users/entities/user.entity';
+import { AuthenticationController } from './authentication/authentication.controller';
+import { AuthenticationService } from './authentication/authentication.service';
 import { AccessTokenGuard } from './authentication/guards/access-token.guard';
 import { AuthenticationGuard } from './authentication/guards/authentication.guard';
+import { RefreshTokenIdsStorage } from './authentication/refresh-token-ids.storage';
+import jwtConfig from './config/jwt.config';
+import { BcryptService } from './hashing/bcrypt.service';
+import { HashingService } from './hashing/hashing.service';
 
 @Module({
 	imports: [
@@ -20,8 +21,6 @@ import { AuthenticationGuard } from './authentication/guards/authentication.guar
 	],
 	controllers: [AuthenticationController],
 	providers: [
-		AuthenticationService,
-		AccessTokenGuard,
 		{
 			provide: HashingService,
 			useClass: BcryptService,
@@ -30,6 +29,9 @@ import { AuthenticationGuard } from './authentication/guards/authentication.guar
 			provide: APP_GUARD,
 			useClass: AuthenticationGuard,
 		},
+		AuthenticationService,
+		AccessTokenGuard,
+		RefreshTokenIdsStorage,
 	],
 	exports: [AuthenticationService],
 })
