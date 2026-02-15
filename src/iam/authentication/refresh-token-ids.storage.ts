@@ -12,15 +12,16 @@ export class RefreshTokenIdsStorage
 	implements OnApplicationBootstrap, OnApplicationShutdown
 {
 	private redisClient: Redis;
+
 	onApplicationBootstrap() {
 		this.redisClient = new Redis({
-			host: process.env.REDIS_HOST || 'localhost',
-			port: Number(process.env.REDIS_PORT) || 6379,
+			host: 'localhost',
+			port: 6379,
 		});
 	}
 
 	onApplicationShutdown(signal?: string) {
-		this.redisClient.quit();
+		return this.redisClient.quit();
 	}
 
 	async insert(userId: number, tokenId: string): Promise<void> {
