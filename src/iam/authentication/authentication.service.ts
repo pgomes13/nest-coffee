@@ -47,6 +47,6 @@ export class AuthenticationService {
 		if (!isEqual) {
 			throw new UnauthorizedException('Password does not match');
 		}
-		return user;
+		return true;
 	}
 }
