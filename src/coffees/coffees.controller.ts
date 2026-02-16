@@ -9,8 +9,10 @@ import {
 	Query,
 } from '@nestjs/common';
 import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
+import { Permission } from 'src/iam/authorization/permission.type';
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
+import { Permissions } from '../iam/authorization/decorators/permissions.decorator';
 import { Roles } from '../iam/authorization/decorators/roles.decorator';
 import { ActiveUser } from '../iam/decorators/active-user.decorator';
 import type { ActiveUserData } from '../iam/interfaces/active-user-data.interface';
@@ -38,7 +40,8 @@ export class CoffeesController {
 		return this.coffeesService.findOne(id);
 	}
 
-	@Roles(Role.Admin)
+	// @Roles(Role.Admin)
+	@Permissions(Permission.CreateCoffee)
 	@Post()
 	create(@Body() createCoffeeDto: CreateCoffeeDto) {
 		return this.coffeesService.create(createCoffeeDto);
