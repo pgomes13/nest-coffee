@@ -9,6 +9,8 @@ import {
 	Query,
 } from '@nestjs/common';
 import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
+import { Auth } from 'iam/authentication/decorators/auth.decorator';
+import { AuthType } from 'iam/authentication/enums/auth-type.enum';
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { Permissions } from '../iam/authorization/decorators/permissions.decorator';
@@ -21,6 +23,7 @@ import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
+@Auth(AuthType.Bearer, AuthType.ApiKey)
 @ApiTags('coffees')
 @Controller('coffees')
 export class CoffeesController {

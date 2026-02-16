@@ -4,10 +4,11 @@ import {
 	Injectable,
 	UnauthorizedException,
 } from '@nestjs/common';
-import { AccessTokenGuard } from './access-token.guard';
 import { Reflector } from '@nestjs/core';
-import { AuthType } from '../enums/auth-type.enum';
 import { AUTH_TYPE_KEY } from '../decorators/auth.decorator';
+import { AuthType } from '../enums/auth-type.enum';
+import { AccessTokenGuard } from './access-token.guard';
+import { ApiKeyGuard } from './api-key.guard';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
@@ -19,9 +20,11 @@ export class AuthenticationGuard implements CanActivate {
 	constructor(
 		private readonly accessTokenGuard: AccessTokenGuard,
 		private readonly reflector: Reflector,
+		private readonly apiKeyGuard: ApiKeyGuard,
 	) {
 		this.authTypeGuardMap = {
 			[AuthType.Bearer]: this.accessTokenGuard,
+			[AuthType.ApiKey]: this.apiKeyGuard,
 			[AuthType.None]: { canActivate: () => true },
 		};
 	}
