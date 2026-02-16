@@ -2,5 +2,5 @@ import { ActiveUserData } from '../../../../iam/interfaces/active-user-data.inte
 import { Policy } from './policy.interface';
 
 export interface PolicyHandler<T extends Policy> {
-	handle(policy: T, user: ActiveUserData): Promise<boolean>;
+	handle(policy: T, user: ActiveUserData): Promise<void>;
 }

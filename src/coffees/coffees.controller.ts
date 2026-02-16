@@ -42,6 +42,7 @@ export class CoffeesController {
 
 	// @Roles(Role.Admin)
 	@Permissions(Permission.CreateCoffee)
+	// @Policies(new FrameworkContributorPolicy())
 	@Post()
 	create(@Body() createCoffeeDto: CreateCoffeeDto) {
 		return this.coffeesService.create(createCoffeeDto);

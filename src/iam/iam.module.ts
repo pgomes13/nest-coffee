@@ -34,6 +34,10 @@ import { HashingService } from './hashing/hashing.service';
 			provide: APP_GUARD,
 			useClass: PermissionsGuard,
 		},
+		// {
+		// 	provide: APP_GUARD,
+		// 	useClass: PoliciesGuard,
+		// },
 		AuthenticationService,
 		AccessTokenGuard,
 		RefreshTokenIdsStorage,
