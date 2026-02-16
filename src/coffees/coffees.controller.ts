@@ -9,10 +9,12 @@ import {
 	Query,
 } from '@nestjs/common';
 import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
-import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
-import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
-import { ActiveUser } from 'src/iam/decorators/active-user.decorator';
+import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
+import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
+import { Roles } from '../iam/authorization/decorators/roles.decorator';
+import { ActiveUser } from '../iam/decorators/active-user.decorator';
 import type { ActiveUserData } from '../iam/interfaces/active-user-data.interface';
+import { Role } from '../users/enums/role.enum';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
@@ -36,16 +38,19 @@ export class CoffeesController {
 		return this.coffeesService.findOne(id);
 	}
 
+	@Roles(Role.Admin)
 	@Post()
 	create(@Body() createCoffeeDto: CreateCoffeeDto) {
 		return this.coffeesService.create(createCoffeeDto);
 	}
 
+	@Roles(Role.Admin)
 	@Patch(':id')
 	update(@Param('id') id: number, @Body() updateCoffeeDto: UpdateCoffeeDto) {
 		return this.coffeesService.update(id, updateCoffeeDto);
 	}
 
+	@Roles(Role.Admin)
 	@Delete(':id')
 	remove(@Param('id') id: number) {
 		return this.coffeesService.remove(id);
