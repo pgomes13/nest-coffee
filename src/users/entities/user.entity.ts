@@ -17,10 +17,13 @@ export class User {
 	@PrimaryGeneratedColumn()
 	id: number;
 
+	@Column({ nullable: true, unique: true })
+	googleId: string;
+
 	@Column({ unique: true })
 	email: string;
 
-	@Column()
+	@Column({ nullable: true })
 	password: string;
 
 	@Column({ enum: Role, default: Role.Regular })
