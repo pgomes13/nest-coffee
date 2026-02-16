@@ -9,11 +9,11 @@ import {
 	Query,
 } from '@nestjs/common';
 import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
-import { Permission } from 'src/iam/authorization/permission.type';
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { ParseIntPipe } from '../common/pipes/parse-int.pipe';
 import { Permissions } from '../iam/authorization/decorators/permissions.decorator';
 import { Roles } from '../iam/authorization/decorators/roles.decorator';
+import { Permission } from '../iam/authorization/permission.type';
 import { ActiveUser } from '../iam/decorators/active-user.decorator';
 import type { ActiveUserData } from '../iam/interfaces/active-user-data.interface';
 import { Role } from '../users/enums/role.enum';

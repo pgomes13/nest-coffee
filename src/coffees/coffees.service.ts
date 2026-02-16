@@ -1,12 +1,11 @@
 import { Injectable, NotAcceptableException } from '@nestjs/common';
-import { Coffee } from './entities/coffee.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { DataSource, Repository } from 'typeorm';
+import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { Event } from '../events/entities/event.entity';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
-import { DataSource } from 'typeorm';
+import { Coffee } from './entities/coffee.entity';
 
 @Injectable()
 export class CoffeesService {

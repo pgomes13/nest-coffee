@@ -1,4 +1,4 @@
-import { CoffeesPermission } from 'src/coffees/coffees.permission';
+import { CoffeesPermission } from '../../coffees/coffees.permission';
 
 export const Permission = {
 	...CoffeesPermission,

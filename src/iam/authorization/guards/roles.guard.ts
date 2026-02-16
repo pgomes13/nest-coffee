@@ -1,8 +1,8 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
-import { REQUEST_USER_KEY } from 'src/iam/iam.constants';
-import { ActiveUserData } from 'src/iam/interfaces/active-user-data.interface';
+import { REQUEST_USER_KEY } from '../../../iam/iam.constants';
+import { ActiveUserData } from '../../../iam/interfaces/active-user-data.interface';
 import { ROLES_KEY } from '../decorators/roles.decorator';
 
 @Injectable()

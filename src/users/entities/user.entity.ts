@@ -1,8 +1,8 @@
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import {
 	Permission,
 	PermissionType,
-} from 'src/iam/authorization/permission.type';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+} from '../../iam/authorization/permission.type';
 import { Role } from '../enums/role.enum';
 
 @Entity()
