@@ -16,6 +16,8 @@ import { PermissionsGuard } from './authorization/guards/permissions.guard';
 import jwtConfig from './config/jwt.config';
 import { BcryptService } from './hashing/bcrypt.service';
 import { HashingService } from './hashing/hashing.service';
+import { GoogleAuthenticationService } from './authentication/social/google-authentication.service';
+import { GoogleAuthenticationController } from './authentication/social/google-authentication.controller';
 
 @Module({
 	imports: [
@@ -23,7 +25,7 @@ import { HashingService } from './hashing/hashing.service';
 		JwtModule.registerAsync(jwtConfig.asProvider()),
 		ConfigModule.forFeature(jwtConfig),
 	],
-	controllers: [AuthenticationController],
+	controllers: [AuthenticationController, GoogleAuthenticationController],
 	providers: [
 		{
 			provide: HashingService,
@@ -46,6 +48,7 @@ import { HashingService } from './hashing/hashing.service';
 		AccessTokenGuard,
 		RefreshTokenIdsStorage,
 		ApiKeysService,
+		GoogleAuthenticationService,
 	],
 	exports: [AuthenticationService],
 })
