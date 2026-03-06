@@ -14,9 +14,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Generate head schema
-        run: go run ./cmd/generate-schema --out /tmp/head.yaml
-
       - name: API drift check
         run: |
           drift-guard compare openapi \
