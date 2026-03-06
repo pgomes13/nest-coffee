@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsArray } from 'class-validator';
+import { IsArray, IsString } from 'class-validator';
 
 export class CreateCoffeeDto {
 	@ApiProperty({ description: 'The name of the coffee' })
 	@IsString()
-	readonly name: string;
+	readonly name1: string;
 
 	@ApiProperty({ description: 'The brand of the coffee' })
 	@IsString()
