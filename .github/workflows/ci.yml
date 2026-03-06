@@ -14,25 +14,25 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.22'
+      - name: Generate head schema
+        run: go run ./cmd/generate-schema --out /tmp/head.yaml
 
-      - name: Install driftengine
-        run: go install github.com/pgomes13/drift-guard-engine/cmd/driftengine@latest
-
-      - name: OpenAPI drift check
+      - name: Generate base schema from main
         run: |
-          driftengine openapi \
-            --base api/base.yaml \
-            --head api/head.yaml \
-            --format github \
-            --fail-on-breaking
+          git stash
+          git checkout origin/main
+          go run ./cmd/generate-schema --out /tmp/base.yaml
+          git checkout -
 
-      - name: GraphQL drift check
+      - name: Install drift-guard
         run: |
-          driftengine graphql \
-            --base schema/base.graphql \
-            --head schema/head.graphql \
+          brew tap pgomes13/tap
+          brew install drift-guard
+
+      - name: API drift check
+        run: |
+          drift-guard openapi \
+            --base /tmp/base.yaml \
+            --head /tmp/head.yaml \
             --format github \
             --fail-on-breaking
