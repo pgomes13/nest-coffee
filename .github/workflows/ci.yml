@@ -18,6 +18,9 @@ jobs:
         with:
           go-version: '1.22'
 
+      - name: Install swag
+        run: go install github.com/swaggo/swag/cmd/swag@latest
+
       - name: Install drift-guard
         run: go install github.com/pgomes13/drift-guard-engine/cmd/drift-guard@v1.1.1
 
