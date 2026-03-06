@@ -18,12 +18,12 @@ jobs:
         with:
           go-version: '1.22'
 
-      - name: Install drift-guard
-        run: go install github.com/pgomes13/drift-guard-engine/cmd/driftengine@latest
+      - name: Install driftengine
+        run: go install github.com/pgomes13/driftengine-engine/cmd/driftengine@latest
 
       - name: OpenAPI drift check
         run: |
-          drift-guard openapi \
+          driftengine openapi \
             --base api/base.yaml \
             --head api/head.yaml \
             --format github \
@@ -31,7 +31,7 @@ jobs:
 
       - name: GraphQL drift check
         run: |
-          drift-guard graphql \
+          driftengine graphql \
             --base schema/base.graphql \
             --head schema/head.graphql \
             --format github \
