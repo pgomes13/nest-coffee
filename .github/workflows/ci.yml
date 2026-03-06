@@ -22,7 +22,7 @@ jobs:
         run: go install github.com/swaggo/swag/cmd/swag@latest
 
       - name: Install drift-guard
-        run: go install github.com/pgomes13/drift-guard-engine/cmd/drift-guard@v1.1.2
+        run: go install github.com/pgomes13/drift-guard-engine/cmd/drift-guard@v1.1.3
 
       - name: API drift check
         run: drift-guard compare openapi --fail-on-breaking
