@@ -14,10 +14,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
       - name: Install drift-guard
-        run: |
-          brew tap pgomes13/tap
-          brew install drift-guard
+        run: go install github.com/pgomes13/drift-guard-engine/cmd/driftengine@latest
 
       - name: API drift check
         run: |
