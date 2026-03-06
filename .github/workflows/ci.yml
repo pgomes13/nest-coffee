@@ -14,6 +14,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install drift-guard
+        run: |
+          brew tap pgomes13/tap
+          brew install drift-guard
+
       - name: API drift check
         run: |
           drift-guard compare openapi \
