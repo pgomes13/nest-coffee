@@ -19,7 +19,7 @@ jobs:
           go-version: '1.22'
 
       - name: Install driftengine
-        run: go install github.com/pgomes13/driftengine-engine/cmd/driftengine@latest
+        run: go install github.com/pgomes13/drift-guard-engine/cmd/driftengine@latest
 
       - name: OpenAPI drift check
         run: |
