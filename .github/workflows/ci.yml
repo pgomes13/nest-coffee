@@ -17,22 +17,10 @@ jobs:
       - name: Generate head schema
         run: go run ./cmd/generate-schema --out /tmp/head.yaml
 
-      - name: Generate base schema from main
-        run: |
-          git stash
-          git checkout origin/main
-          go run ./cmd/generate-schema --out /tmp/base.yaml
-          git checkout -
-
-      - name: Install drift-guard
-        run: |
-          brew tap pgomes13/tap
-          brew install drift-guard
-
       - name: API drift check
         run: |
-          drift-guard openapi \
-            --base /tmp/base.yaml \
-            --head /tmp/head.yaml \
+          drift-guard compare openapi \
+            --cmd "swag init" \
+            --output docs/swagger.yaml \
             --format github \
             --fail-on-breaking
