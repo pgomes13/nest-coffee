@@ -19,7 +19,7 @@ jobs:
           go-version: '1.22'
 
       - name: Install drift-guard
-        run: go install github.com/pgomes13/drift-guard-engine/cmd/driftengine@latest
+        run: go install github.com/pgomes13/drift-guard-engine/cmd/drift-guard@latest
 
       - name: API drift check
         run: |
