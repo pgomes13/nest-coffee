@@ -24,8 +24,8 @@ import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
 @Auth(AuthType.Bearer, AuthType.ApiKey)
-@ApiTags('coffeess')
-@Controller('coffees')
+@ApiTags('coffees')
+@Controller('coffeess')
 export class CoffeesController {
 	constructor(private readonly coffeesService: CoffeesService) {}
 
