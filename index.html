@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>API Drift Log</title>
+<style>*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:960px;margin:48px auto;padding:0 24px;color:#24292e}h1{font-size:1.5rem;border-bottom:1px solid #e1e4e8;padding-bottom:12px;margin-bottom:24px}.entry{border:1px solid #e1e4e8;border-radius:6px;margin-bottom:20px;overflow:hidden}.entry-header{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:#f6f8fa;border-bottom:1px solid #e1e4e8}.entry-header a{font-weight:600;color:#0366d6;text-decoration:none}.entry-time{color:#6a737d;font-size:.85rem}.entry-body{padding:16px}pre{margin:0;font-size:.82rem;white-space:pre-wrap;word-break:break-word}.no-drift{color:#6a737d;font-style:italic}</style>
+</head>
+<body>
+<h1>API Drift Log</h1>
+<!-- ENTRIES -->
+<div class="entry"><div class="entry-header"><a href="https://github.com/pgomes13/nest-coffee/pull/7">PR #7</a><span class="entry-time">2026-03-07 23:00 UTC</span></div><div class="entry-body"><pre>**Total: 4** | Breaking: 2 | Non-Breaking: 2 | Info: 0
+
+| Severity | Type | Path | Description |
+|----------|------|------|-------------|
+| [BREAKING] | endpoint_removed | /coffees | Endpoint /coffees was removed |
+| [BREAKING] | endpoint_removed | /coffees/{id} | Endpoint /coffees/{id} was removed |
+| [non-breaking] | endpoint_added | /coffeess/{id} | Endpoint /coffeess/{id} was added |
+| [non-breaking] | endpoint_added | /coffeess | Endpoint /coffeess was added |</pre></div></div>
+</body>
+</html>
