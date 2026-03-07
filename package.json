@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "author": "",
+  "packageManager": "pnpm@10.28.2",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
