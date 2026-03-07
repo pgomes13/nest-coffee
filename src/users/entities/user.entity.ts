@@ -1,10 +1,4 @@
-import {
-	Column,
-	Entity,
-	JoinTable,
-	OneToMany,
-	PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiKey } from 'users/api-keys/entities/api-key.entity';
 import {
 	Permission,
@@ -26,7 +20,7 @@ export class User {
 	@Column({ nullable: true })
 	password: string;
 
-	@Column({ enum: Role, default: Role.Regular })
+	@Column({ type: 'enum', enum: Role, default: Role.Regular })
 	role: Role;
 
 	@Column({ default: false })
@@ -35,7 +29,6 @@ export class User {
 	@Column({ nullable: true })
 	tfaSecret: string;
 
-	@JoinTable()
 	@OneToMany((type) => ApiKey, (apiKey) => apiKey.user)
 	apiKeys: ApiKey[];
 
