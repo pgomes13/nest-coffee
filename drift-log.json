@@ -1,0 +1,26 @@
+[
+  {
+    "pr": 8,
+    "url": "https://github.com/pgomes13/nest-coffee/pull/8",
+    "timestamp": "2026-03-08T00:28:45Z",
+    "summary": {
+      "total": 4,
+      "breaking": 2,
+      "non_breaking": 2,
+      "info": 0
+    },
+    "html_body": "<p class=\"summary\">Total: 4 | Breaking: 2 | Non-Breaking: 2 | Info: 0</p><table><thead><tr><th>Severity</th><th>Type</th><th>Path</th><th>Description</th></tr></thead><tbody><tr class=\"breaking\"><td>[BREAKING]</td><td>endpoint_removed</td><td>/users</td><td>Endpoint /users was removed</td></tr><tr class=\"breaking\"><td>[BREAKING]</td><td>endpoint_removed</td><td>/users/{id}</td><td>Endpoint /users/{id} was removed</td></tr><tr class=\"nonbreaking\"><td>[non-breaking]</td><td>endpoint_added</td><td>/userss</td><td>Endpoint /userss was added</td></tr><tr class=\"nonbreaking\"><td>[non-breaking]</td><td>endpoint_added</td><td>/userss/{id}</td><td>Endpoint /userss/{id} was added</td></tr></tbody></table>"
+  },
+  {
+    "pr": 7,
+    "url": "https://github.com/pgomes13/nest-coffee/pull/7",
+    "timestamp": "2026-03-08T00:25:39Z",
+    "summary": {
+      "total": 8,
+      "breaking": 4,
+      "non_breaking": 4,
+      "info": 0
+    },
+    "html_body": "<p class=\"summary\">Total: 8 | Breaking: 4 | Non-Breaking: 4 | Info: 0</p><table><thead><tr><th>Severity</th><th>Type</th><th>Path</th><th>Description</th></tr></thead><tbody><tr class=\"breaking\"><td>[BREAKING]</td><td>endpoint_removed</td><td>/coffees</td><td>Endpoint /coffees was removed</td></tr><tr class=\"breaking\"><td>[BREAKING]</td><td>endpoint_removed</td><td>/coffees/{id}</td><td>Endpoint /coffees/{id} was removed</td></tr><tr class=\"breaking\"><td>[BREAKING]</td><td>endpoint_removed</td><td>/users</td><td>Endpoint /users was removed</td></tr><tr class=\"breaking\"><td>[BREAKING]</td><td>endpoint_removed</td><td>/users/{id}</td><td>Endpoint /users/{id} was removed</td></tr><tr class=\"nonbreaking\"><td>[non-breaking]</td><td>endpoint_added</td><td>/coffeess</td><td>Endpoint /coffeess was added</td></tr><tr class=\"nonbreaking\"><td>[non-breaking]</td><td>endpoint_added</td><td>/coffeess/{id}</td><td>Endpoint /coffeess/{id} was added</td></tr><tr class=\"nonbreaking\"><td>[non-breaking]</td><td>endpoint_added</td><td>/user/{id}</td><td>Endpoint /user/{id} was added</td></tr><tr class=\"nonbreaking\"><td>[non-breaking]</td><td>endpoint_added</td><td>/user</td><td>Endpoint /user was added</td></tr></tbody></table>"
+  }
+]
