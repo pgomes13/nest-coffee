@@ -1,98 +1,115 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# nest-coffee
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A NestJS REST API for managing coffees, with a full IAM layer covering JWT, API key, session, Google OAuth, and two-factor authentication.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tech stack
 
-## Description
+- **Framework** – NestJS + TypeScript
+- **Database** – PostgreSQL via TypeORM
+- **Cache / Sessions** – Redis
+- **Auth** – JWT (Bearer + Refresh tokens), API Keys, Sessions (Passport), Google OAuth, TOTP 2FA
+- **Docs** – OpenAPI / Swagger (`/api`)
+- **CI** – API drift detection via [drift-guard](https://github.com/pgomes13/drift-guard-engine)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Prerequisites
 
-## Project setup
+- Node.js 20+
+- pnpm
+- Docker (for PostgreSQL and Redis)
+
+## Setup
 
 ```bash
-$ pnpm install
+# Start infrastructure
+docker-compose up -d
+
+# Install dependencies
+pnpm install
 ```
 
-## Compile and run the project
+Copy `.env.example` to `.env` and fill in the required values.
+
+## Running
 
 ```bash
-# development
-$ pnpm run start
+# Development (watch mode)
+pnpm start:dev
 
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+# Production
+pnpm build
+pnpm start:prod
 ```
 
-## Run tests
+Swagger UI is available at `http://localhost:3000/api`.
+
+## Testing
 
 ```bash
-# unit tests
-$ pnpm run test
+# Unit tests
+pnpm test
 
 # e2e tests
-$ pnpm run test:e2e
+pnpm test:e2e
 
-# test coverage
-$ pnpm run test:cov
+# Coverage
+pnpm test:cov
 ```
 
-## Deployment
+## API
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### Authentication — `/authentication`
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+| Method | Path | Description | Auth required |
+|--------|------|-------------|---------------|
+| POST | `/authentication/sign-up` | Register a new user | No |
+| POST | `/authentication/sign-in` | Sign in, returns access + refresh tokens | No |
+| POST | `/authentication/refresh-tokens` | Exchange a refresh token for new tokens | No |
+| POST | `/authentication/2fa/generate` | Generate a TOTP QR code (enables 2FA) | Bearer |
 
-```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
-```
+### Google OAuth — `/authentication/google`
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+| Method | Path | Description | Auth required |
+|--------|------|-------------|---------------|
+| POST | `/authentication/google` | Authenticate with a Google ID token | No |
 
-## Resources
+### Session auth — `/session-authentication`
 
-Check out a few resources that may come in handy when working with NestJS:
+| Method | Path | Description | Auth required |
+|--------|------|-------------|---------------|
+| POST | `/session-authentication/sign-in` | Sign in via session cookie | No |
+| GET | `/session-authentication` | Verify session | Session cookie |
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Coffees — `/coffees`
 
-## Support
+Requires **Bearer token** or **API key** on all routes.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+| Method | Path | Description | Role / Permission |
+|--------|------|-------------|-------------------|
+| GET | `/coffees` | List all coffees (paginated) | Any authenticated user |
+| GET | `/coffees/:id` | Get a coffee by ID | Any authenticated user |
+| POST | `/coffees` | Create a coffee | `CreateCoffee` permission |
+| PATCH | `/coffees/:id` | Update a coffee | `Admin` role |
+| DELETE | `/coffees/:id` | Delete a coffee | `Admin` role |
 
-## Stay in touch
+### Users — `/users`
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/users` | Create a user |
+| GET | `/users` | List all users |
+| GET | `/users/:id` | Get a user by ID |
+| PATCH | `/users/:id` | Update a user |
+| DELETE | `/users/:id` | Delete a user |
+
+## CI — API Drift Check
+
+On every pull request, the [drift-guard-engine](https://github.com/pgomes13/drift-guard-engine) action:
+
+1. Generates the OpenAPI spec for both the base branch and the PR branch.
+2. Compares them and reports breaking / non-breaking changes.
+3. Posts a summary comment on the PR.
+4. Appends a timestamped entry to the GitHub Pages drift log.
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+MIT
