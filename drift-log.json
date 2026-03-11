@@ -1,5 +1,17 @@
 [
   {
+    "pr": 9,
+    "url": "https://github.com/pgomes13/nest-coffee/pull/9",
+    "timestamp": "2026-03-11T16:00:35Z",
+    "summary": {
+      "total": 8,
+      "breaking": 4,
+      "non_breaking": 4,
+      "info": 0
+    },
+    "html_body": "<p class=\"summary\">Total: 8 | Breaking: 4 | Non-Breaking: 4 | Info: 0</p><table><thead><tr><th>Severity</th><th>Type</th><th>Path</th><th>Description</th></tr></thead><tbody><tr class=\"breaking\"><td>[BREAKING]</td><td>endpoint_removed</td><td>/coffees/{id}</td><td>Endpoint /coffees/{id} was removed</td></tr><tr class=\"breaking\"><td>[BREAKING]</td><td>endpoint_removed</td><td>/coffees</td><td>Endpoint /coffees was removed</td></tr><tr class=\"breaking\"><td>[BREAKING]</td><td>endpoint_removed</td><td>/users</td><td>Endpoint /users was removed</td></tr><tr class=\"breaking\"><td>[BREAKING]</td><td>endpoint_removed</td><td>/users/{id}</td><td>Endpoint /users/{id} was removed</td></tr><tr class=\"nonbreaking\"><td>[non-breaking]</td><td>endpoint_added</td><td>/coffeesss</td><td>Endpoint /coffeesss was added</td></tr><tr class=\"nonbreaking\"><td>[non-breaking]</td><td>endpoint_added</td><td>/userssss</td><td>Endpoint /userssss was added</td></tr><tr class=\"nonbreaking\"><td>[non-breaking]</td><td>endpoint_added</td><td>/coffeesss/{id}</td><td>Endpoint /coffeesss/{id} was added</td></tr><tr class=\"nonbreaking\"><td>[non-breaking]</td><td>endpoint_added</td><td>/userssss/{id}</td><td>Endpoint /userssss/{id} was added</td></tr></tbody></table>"
+  },
+  {
     "pr": 8,
     "url": "https://github.com/pgomes13/nest-coffee/pull/8",
     "timestamp": "2026-03-08T00:28:45Z",
