@@ -25,7 +25,7 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
 @Auth(AuthType.Bearer, AuthType.ApiKey)
 @ApiTags('coffees')
-@Controller('coffees')
+@Controller('coffeesss')
 export class CoffeesController {
 	constructor(private readonly coffeesService: CoffeesService) {}
 

@@ -2,9 +2,12 @@ name: API Drift Check
 
 on:
   pull_request:
+  push:
+    branches:
+      - main
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
   issues: write
 
