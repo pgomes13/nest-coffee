@@ -7,9 +7,10 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
   issues: write
+  checks: write
 
 jobs:
   drift:
@@ -19,4 +20,4 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pgomes13/drift-guard-engine@v3.3.0
+      - uses: pgomes13/drift-guard-engine@v3
