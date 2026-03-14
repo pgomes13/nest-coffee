@@ -5,7 +5,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
   issues: write
 
 jobs:
@@ -16,4 +15,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pgomes13/drift-guard-engine@v1
+      - uses: DriftAgent/api-drift-agent@v1
+        with:
+          org-read-token: ${{ secrets.ORG_READ_TOKEN }}
+          # anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}  # optional: AI risk analysis
