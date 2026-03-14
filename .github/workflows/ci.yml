@@ -19,4 +19,6 @@ jobs:
       - uses: DriftAgent/api-drift-agent@v1
         with:
           org-read-token: ${{ secrets.ORG_READ_TOKEN }}
-          # anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}  # optional: AI risk analysis
+          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }} # optional: AI risk analysis
+          consumer-repos: |
+            https://github.com/pgomes13/nest-coffee-ui
